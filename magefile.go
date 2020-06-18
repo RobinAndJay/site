@@ -4,7 +4,6 @@ package main
 
 import (
 	"io/ioutil"
-	"os"
 	"strconv"
 
 	"github.com/magefile/mage/sh"
@@ -24,15 +23,7 @@ func NewPost() error {
 
 // Build builds the site.
 func Build() error {
-	if err := Clean(); err != nil {
-		return err
-	}
 	return sh.RunV("hugo")
-}
-
-// Clean cleans up the public folder.
-func Clean() error {
-	return os.RemoveAll("public/")
 }
 
 // Local runs the server at 8080
