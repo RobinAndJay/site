@@ -1,0 +1,56 @@
+theme = "origin"
+baseURL = "https://letssavesummer.com"
+languageCode = "en-us"
+title = "Let's Save Summer!"
+author = "Jerry Caligiure"
+copyright = "© 2020, Jerry Caligiure"
+paginate = 3
+DefaultContentLanguage = "en"
+enableInlineShortcodes = true
+footnoteReturnLinkContents = "^"
+
+[params]
+  description = "Let's Save Summer!"
+  featured = true
+  cssonly = false
+
+  [params.socials]
+    facebook = ""
+    twitter = ""
+    instagram = ""
+    youtube = ""
+    github = ""
+    gitlab = ""
+    linkedin = ""
+    slack = ""
+    stackoverflow = ""
+    medium= ""
+
+[menu]
+
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    pre = "<i class='fa fa-heart'></i>"
+    weight = 5
+
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "featured/about/"
+    pre = "<i class='fa fa-question-circle' aria-hidden='true'></i>"
+    weight = 10
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+[markup]
+  [markup.highlight]
+    style = "github"
+    tabWidth = 4
+
+[markup.goldmark.renderer]
+unsafe = true
