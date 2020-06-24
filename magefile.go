@@ -5,6 +5,7 @@ package main
 import (
 	"io/ioutil"
 	"strconv"
+	"time"
 
 	"github.com/magefile/mage/sh"
 )
@@ -23,7 +24,25 @@ func NewPost() error {
 
 // Build builds the site.
 func Build() error {
-	return sh.RunV("hugo")
+	if err := sh.RunV("hugo"); err != nil {
+		return err
+	}
+	if err := sh.RunV("git", "add", "--all"); err != nil {
+		return err
+	}
+	if err := sh.RunV("git", "commit", "-m", "rebuilding site: "+time.Now().String()); err != nil {
+		return err
+	}
+	if err := sh.RunV("cd", "public"); err != nil {
+		return err
+	}
+	if err := sh.RunV("git", "add", "--all"); err != nil {
+		return err
+	}
+	if err := sh.RunV("git", "commit", "-m", "rebuilding site: "+time.Now().String()); err != nil {
+		return err
+	}
+	return nil
 }
 
 // Local runs the server at 8080
