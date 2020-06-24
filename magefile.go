@@ -33,6 +33,9 @@ func Build() error {
 	if err := sh.RunV("git", "commit", "-m", "rebuilding site: "+time.Now().String()); err != nil {
 		return err
 	}
+	if err := sh.RunV("git", "push"); err != nil {
+		return err
+	}
 	if err := sh.RunV("cd", "public"); err != nil {
 		return err
 	}
@@ -42,7 +45,10 @@ func Build() error {
 	if err := sh.RunV("git", "commit", "-m", "rebuilding site: "+time.Now().String()); err != nil {
 		return err
 	}
-	return nil
+	if err := sh.RunV("git", "push"); err != nil {
+		return err
+	}
+	return sh.RunV("cd", "..")
 }
 
 // Local runs the server at 8080
