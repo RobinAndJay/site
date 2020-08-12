@@ -19,6 +19,7 @@
     {{ end }}
 </div>
 {{end}}
+{{partial "patreon.html" .}}
 <div class="post-list">
   {{ range $paginator.Pages }}
       {{ .Render "li" }}
