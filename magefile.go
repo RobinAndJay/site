@@ -4,6 +4,7 @@ package main
 
 import (
 	"io/ioutil"
+	"os"
 	"strconv"
 	"time"
 
@@ -36,9 +37,7 @@ func Build() error {
 	if err := sh.RunV("git", "push"); err != nil {
 		return err
 	}
-	if err := sh.RunV("cd", "public"); err != nil {
-		return err
-	}
+	os.Chdir("public")
 	if err := sh.RunV("git", "add", "--all"); err != nil {
 		return err
 	}
@@ -48,7 +47,7 @@ func Build() error {
 	if err := sh.RunV("git", "push"); err != nil {
 		return err
 	}
-	return sh.RunV("cd", "..")
+	return os.Chdir("..")
 }
 
 // Local runs the server at 8080
